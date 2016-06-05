@@ -12,20 +12,23 @@ knitr::opts_chunk$set(
 )
 ```
 
+<!-- 
 [![Build Status](https://travis-ci.org/hrbrmstr/ssllabs.svg)](https://travis-ci.org/hrbrmstr/ssllabs) 
 ![Project Status: Concept - Minimal or no implementation has been done yet.](http://www.repostatus.org/badges/0.1.0/concept.svg)](http://www.repostatus.org/#concept)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/ssllabs)](http://cran.r-project.org/web/packages/ssllabs) 
 ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/ssllabs)
+-->
 
-ssllabs is ...
+`ssllabs` : Tools to Work with the `SSL Labs` `API`
 
 The following functions are implemented:
 
-The following data sets are included:
-
-### News
-
-- Version  released
+- `analyze_site`:	Invoke assessment and check progress
+- `get_endpoint_data`:	Retrieve detailed endpoint information
+- `get_root_certs_raw`:	Retrieve root certificates
+- `get_status_codes`:	Retrieve known status codes
+- `ssllabs`:	Tools to Work with the 'SSL Labs' 'API'
+- `ssllabs_api_info`:	Check SSL Labs availability
 
 ### Installation
 
@@ -45,6 +48,13 @@ library(ssllabs)
 # current verison
 packageVersion("ssllabs")
 
+ssllabs_api_info()
+
+get_status_codes()
+
+get_root_certs_raw()
+
+analyze_site("rud.is")
 ```
 
 ### Test Results
