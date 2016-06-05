@@ -13,14 +13,13 @@
 #'                   time as the start_new parameter.
 #' @references \url{https://github.com/ssllabs/ssllabs-scan/blob/stable/ssllabs-api-docs.md}
 #' @export
-get_endpoint_data <- function(host, ip, from_cache="off") {
+get_endpoint_data <- function(host, ip, from_cache = "off") {
 
   res <- httr::GET("https://api.ssllabs.com/api/v2/getEndpointData",
-                   query=list(host=host,
-                              s=ip,
-                              fromCache=from_cache))
-
-  dat <- httr::content(res, as="text")
-  jsonlite::fromJSON(dat, flatten=TRUE)
-
+                   query = list(host = host,
+                              s = ip,
+                              fromCache = from_cache))
+  httr::stop_for_status(res)
+  dat <- httr::content(res, as = "text")
+  return(jsonlite::fromJSON(dat, flatten = TRUE))
 }
