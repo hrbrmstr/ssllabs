@@ -7,7 +7,7 @@
 get_root_certs_raw <- function() {
 
   res <- httr::GET("https://api.ssllabs.com/api/v2/getRootCertsRaw")
-  dat <- httr::content(res, as="text")
-  openssl::read_cert(dat)
-
+  httr::stop_for_status(res)
+  dat <- httr::content(res, as = "text")
+  return(openssl::read_cert(dat))
 }

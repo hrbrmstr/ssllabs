@@ -1,4 +1,4 @@
-#' Tools to Work with the `SSL Labs` `API`
+#' @title Tools to Work with the `SSL Labs` `API`
 #'
 #' SSL Labs APIs are provided free of charge, subject to our terms and conditions:
 #' \url{https://www.ssllabs.com/about/terms.html}. The spirit of the license is that the
@@ -45,5 +45,7 @@
 #' @name ssllabs
 #' @docType package
 #' @author Bob Rudis (@@hrbrmstr)
-#' @import httr jsonlite openssl
+#' @importFrom httr stop_for_status GET user_agent content
+#' @importFrom jsonlite fromJSON
+#' @importFrom openssl read_cert
 NULL

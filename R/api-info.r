@@ -9,7 +9,7 @@
 ssllabs_api_info <- function() {
 
   res <- httr::GET("https://api.ssllabs.com/api/v2/info")
-  dat <- httr::content(res, as="text")
-  jsonlite::fromJSON(dat, flatten=TRUE)
-
+  httr::stop_for_status(res)
+  dat <- httr::content(res, as = "text")
+  return(jsonlite::fromJSON(dat, flatten = TRUE))
 }

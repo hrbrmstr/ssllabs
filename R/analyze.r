@@ -32,20 +32,19 @@
 #'                        cached report is returned.
 #' @references \url{https://github.com/ssllabs/ssllabs-scan/blob/stable/ssllabs-api-docs.md}
 #' @export
-analyze_site <- function(host, publish="off", start_new=NULL,
-                         from_cache="off", max_age=NULL,
-                         all="on", ignore_mismatch="off") {
+analyze_site <- function(host, publish = "off", start_new = NULL,
+                         from_cache = "off", max_age = NULL,
+                         all = "on", ignore_mismatch = "off") {
 
   res <- httr::GET("https://api.ssllabs.com/api/v2/analyze",
-                   query=list(host=host,
-                              publish=publish,
-                              startNew=start_new,
-                              fromCache=from_cache,
-                              maxAge=max_age,
-                              all=all,
-                              ignoreMismatch=ignore_mismatch))
-
+                   query=list(host = host,
+                              publish = publish,
+                              startNew = start_new,
+                              fromCache = from_cache,
+                              maxAge = max_age,
+                              all = all,
+                              ignoreMismatch = ignore_mismatch))
+  httr::stop_for_status(res)
   dat <- httr::content(res, as="text")
-  jsonlite::fromJSON(dat, flatten=TRUE)
-
+  return(jsonlite::fromJSON(dat, flatten=TRUE))
 }
