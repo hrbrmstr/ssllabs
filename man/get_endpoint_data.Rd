@@ -4,7 +4,7 @@
 \alias{get_endpoint_data}
 \title{Retrieve detailed endpoint information}
 \usage{
-get_endpoint_data(host, ip, from_cache = "off")
+get_endpoint_data(host, ip, from_cache = FALSE)
 }
 \arguments{
 \item{host}{hostname; required.}
@@ -12,7 +12,7 @@ get_endpoint_data(host, ip, from_cache = "off")
 \item{ip}{endpoint IP address}
 
 \item{from_cache}{always deliver cached assessment reports if available; optional,
-defaults to "off". This parameter is intended for API consumers that
+defaults to \code{FALSE}. This parameter is intended for API consumers that
 don't want to wait for assessment results. Can't be used at the same
 time as the start_new parameter.}
 }
@@ -22,7 +22,9 @@ Endpoint object on success. The object will contain complete assessment informat
 This API call does not initiate new assessments, even when a cached report is not
 found.
 }
-\references{
-\url{https://github.com/ssllabs/ssllabs-scan/blob/stable/ssllabs-api-docs.md}
+\examples{
+get_endpoint_data("www.ssllabs.com", "64.41.200.100", TRUE)
 }
-
+\references{
+\url{https://github.com/ssllabs/ssllabs-scan/blob/stable/ssllabs-api-docs-v3.md}
+}

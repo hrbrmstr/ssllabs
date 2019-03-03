@@ -4,8 +4,9 @@
 \alias{analyze_site}
 \title{Invoke assessment and check progress}
 \usage{
-analyze_site(host, publish = "off", start_new = NULL, from_cache = "off",
-  max_age = NULL, all = "on", ignore_mismatch = "off")
+analyze_site(host, publish = "off", start_new = NULL,
+  from_cache = "off", max_age = NULL, all = "on",
+  ignore_mismatch = "off")
 }
 \arguments{
 \item{host}{hostname; required.}
@@ -43,10 +44,14 @@ in progress or in the cache. It will return a single Host object on success. The
 Endpoint object embedded in the Host object will provide partial endpoint results.
 Please note that assessments of individual endpoints can fail even when the overall
 assessment is successful (e.g., one server might be down). At this time, you can
-determine the success of an endpoint assessment by checking the statusMessage field;
+determine the success of an endpoint assessment by checking the \code{statusMessage} field;
 it should contain "Ready".
 }
-\references{
-\url{https://github.com/ssllabs/ssllabs-scan/blob/stable/ssllabs-api-docs.md}
+\examples{
+\dontrun{
+analyze_site(host = "www.ssllabs.com", from_cache = TRUE)
 }
-
+}
+\references{
+\url{https://github.com/ssllabs/ssllabs-scan/blob/stable/ssllabs-api-docs-v3.md}
+}

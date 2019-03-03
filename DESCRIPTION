@@ -1,17 +1,26 @@
 Package: ssllabs
-Title: Tools to Work with the `SSL Labs` `API`
-Version: 0.1.0.9000
-Authors@R: c(person("Bob", "Rudis", email = "bob@rudis.net", role = c("aut", "cre")))
-Description: Tools to Work with the `SSL Labs` `API`.
+Title: Interrogate SSL Certificate Configuration Efficacy via 'ssllabs' API
+Version: 0.2.0
+Authors@R: c(
+        person("Bob", "Rudis", email = "bob@rudis.net", role = c("aut", "cre"))
+    )
+Description: 'Qualys' provides a free online service 
+    (<https://www.ssllabs.com/ssltest/index.html>)
+    that performs a deep analysis of the configuration of any SSL web server on 
+    the public Internet. Methods are provides to initiate scans and retreive 
+    scan results.
 Depends:
-    R (>= 3.0.0)
-License: AGPL + file LICENSE
+    R (>= 3.2.0)
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+URL: https://gitlab.com/hrbrmstr/ssllabs
+BugReports: https://gitlab.com/hrbrmstr/ssllabs/issues
 Suggests:
     testthat
 Imports:
     httr,
     jsonlite,
-    openssl
-RoxygenNote: 5.0.1
+    openssl,
+    magrittr
+RoxygenNote: 6.1.1

@@ -1,4 +1,4 @@
-#' @title Tools to Work with the `SSL Labs` `API`
+#' Interrogate SSL Certificate Configuration Efficacy via 'ssllabs' API
 #'
 #' SSL Labs APIs are provided free of charge, subject to our terms and conditions:
 #' \url{https://www.ssllabs.com/about/terms.html}. The spirit of the license is that the
@@ -44,7 +44,9 @@
 #'
 #' @name ssllabs
 #' @docType package
-#' @author Bob Rudis (@@hrbrmstr)
+#' @keywords internal
+#' @author Bob Rudis (bob@@rud.is)
+#' @references \url{https://github.com/ssllabs/ssllabs-scan/blob/stable/ssllabs-api-docs-v3.md}
 #' @importFrom httr stop_for_status GET user_agent content
 #' @importFrom jsonlite fromJSON
 #' @importFrom openssl read_cert

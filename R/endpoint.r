@@ -5,21 +5,36 @@
 #' This API call does not initiate new assessments, even when a cached report is not
 #' found.
 #'
+#' @md
 #' @param host hostname; required.
 #' @param ip endpoint IP address
 #' @param from_cache always deliver cached assessment reports if available; optional,
-#'                   defaults to "off". This parameter is intended for API consumers that
+#'                   defaults to `FALSE`. This parameter is intended for API consumers that
 #'                   don't want to wait for assessment results. Can't be used at the same
 #'                   time as the start_new parameter.
-#' @references \url{https://github.com/ssllabs/ssllabs-scan/blob/stable/ssllabs-api-docs.md}
+#' @references <https://github.com/ssllabs/ssllabs-scan/blob/stable/ssllabs-api-docs-v3.md>
 #' @export
-get_endpoint_data <- function(host, ip, from_cache = "off") {
+#' @examples
+#' get_endpoint_data("www.ssllabs.com", "64.41.200.100", TRUE)
+get_endpoint_data <- function(host, ip, from_cache = FALSE) {
 
-  res <- httr::GET("https://api.ssllabs.com/api/v2/getEndpointData",
-                   query = list(host = host,
-                              s = ip,
-                              fromCache = from_cache))
+  from_cache <- if (from_cache[1]) "on" else "off"
+
+  res <- httr::GET(
+    url = "https://api.ssllabs.com/api/v3/getEndpointData",
+    query = list(
+      host = host,
+      s = ip,
+      fromCache = from_cache
+    ),
+    .SSLLABS_UA
+  )
+
   httr::stop_for_status(res)
-  dat <- httr::content(res, as = "text")
-  return(jsonlite::fromJSON(dat, flatten = TRUE))
+
+  out <- httr::content(res, as = "text")
+  out <- jsonlite::fromJSON(out, flatten = TRUE)
+
+  out
+
 }

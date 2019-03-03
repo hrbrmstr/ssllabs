@@ -4,12 +4,23 @@
 #' the engine and criteria version, and initialize the maximum number of concurrent
 #' assessments. Returns one Info object on success.
 #'
-#' @references \url{https://github.com/ssllabs/ssllabs-scan/blob/stable/ssllabs-api-docs.md}
+#' @md
+#' @references <https://github.com/ssllabs/ssllabs-scan/blob/stable/ssllabs-api-docs-v3.md>
 #' @export
+#' @examples
+#' ssllabs_api_info()
 ssllabs_api_info <- function() {
 
-  res <- httr::GET("https://api.ssllabs.com/api/v2/info")
+  httr::GET(
+    url = "https://api.ssllabs.com/api/v3/info",
+    .SSLLABS_UA
+  ) -> res
+
   httr::stop_for_status(res)
-  dat <- httr::content(res, as = "text")
-  return(jsonlite::fromJSON(dat, flatten = TRUE))
+
+  out <- httr::content(res, as = "text")
+  out <- jsonlite::fromJSON(out, flatten = TRUE)
+
+  out
+
 }

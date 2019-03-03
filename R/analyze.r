@@ -5,9 +5,10 @@
 #' Endpoint object embedded in the Host object will provide partial endpoint results.
 #' Please note that assessments of individual endpoints can fail even when the overall
 #' assessment is successful (e.g., one server might be down). At this time, you can
-#' determine the success of an endpoint assessment by checking the statusMessage field;
+#' determine the success of an endpoint assessment by checking the `statusMessage` field;
 #' it should contain "Ready".
 #'
+#' @md
 #' @param host hostname; required.
 #' @param publish set to "on" if assessment results should be published on the public
 #'                results boards; optional, defaults to "off".
@@ -30,21 +31,33 @@
 #'                        certificate doesn't match the assessment hostname. Set to off
 #'                        by default. Please note that this parameter is ignored if a
 #'                        cached report is returned.
-#' @references \url{https://github.com/ssllabs/ssllabs-scan/blob/stable/ssllabs-api-docs.md}
+#' @references <https://github.com/ssllabs/ssllabs-scan/blob/stable/ssllabs-api-docs-v3.md>
 #' @export
+#' @examples \dontrun{
+#' analyze_site(host = "www.ssllabs.com", from_cache = TRUE)
+#' }
 analyze_site <- function(host, publish = "off", start_new = NULL,
                          from_cache = "off", max_age = NULL,
                          all = "on", ignore_mismatch = "off") {
+  res <- httr::GET(
+    url = "https://api.ssllabs.com/api/v3/analyze",
+    query = list(
+      host = host,
+      publish = publish,
+      startNew = start_new,
+      fromCache = from_cache,
+      maxAge = max_age,
+      all = all,
+      ignoreMismatch = ignore_mismatch
+    ),
+    .SSLLABS_UA
+  )
 
-  res <- httr::GET("https://api.ssllabs.com/api/v2/analyze",
-                   query=list(host = host,
-                              publish = publish,
-                              startNew = start_new,
-                              fromCache = from_cache,
-                              maxAge = max_age,
-                              all = all,
-                              ignoreMismatch = ignore_mismatch))
   httr::stop_for_status(res)
-  dat <- httr::content(res, as="text")
-  return(jsonlite::fromJSON(dat, flatten=TRUE))
+
+  out <- httr::content(res, as = "text")
+  out <- jsonlite::fromJSON(out, flatten = TRUE)
+
+  out
+
 }

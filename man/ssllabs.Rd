@@ -4,8 +4,8 @@
 \name{ssllabs}
 \alias{ssllabs}
 \alias{ssllabs-package}
-\title{Tools to Work with the `SSL Labs` `API`
-
+\title{Interrogate SSL Certificate Configuration Efficacy via 'ssllabs' API}
+\description{
 SSL Labs APIs are provided free of charge, subject to our terms and conditions:
 \url{https://www.ssllabs.com/about/terms.html}. The spirit of the license is that the
 APIs are made available so that system operators can test their own infrastructure.
@@ -13,7 +13,8 @@ Please read the actual terms and conditions, which are more involved and cover t
 such as integrating with open source projects, and so on. For example, it's important
 (for reasons of privacy, compliance, etc.) for end users to understand that assessments
 are carried out by Qualys's servers, not locally.
-
+}
+\details{
 Commercial use is generally not allowed, except with an explicit permission from Qualys.
 That said, we're usually happy to support good causes, even uses by commercial
 organizations that help improve the security of their customers. If you're a CA, CDN,
@@ -46,8 +47,12 @@ to be in. If you encounter it, take a break and come back later.
 All successful API calls contain response headers X-Max-Assessments and
 X-Current-Assessments. They can be used to calculate how many new assessments can be
 submitted. It is recommended that clients update their internal state after each
-complete response.}
-\author{
-Bob Rudis (@hrbrmstr)
+complete response.
 }
-
+\references{
+\url{https://github.com/ssllabs/ssllabs-scan/blob/stable/ssllabs-api-docs-v3.md}
+}
+\author{
+Bob Rudis (bob@rud.is)
+}
+\keyword{internal}

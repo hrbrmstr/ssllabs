@@ -11,7 +11,9 @@ This call should be used to check the availability of the SSL Labs servers, retr
 the engine and criteria version, and initialize the maximum number of concurrent
 assessments. Returns one Info object on success.
 }
-\references{
-\url{https://github.com/ssllabs/ssllabs-scan/blob/stable/ssllabs-api-docs.md}
+\examples{
+ssllabs_api_info()
 }
-
+\references{
+\url{https://github.com/ssllabs/ssllabs-scan/blob/stable/ssllabs-api-docs-v3.md}
+}
